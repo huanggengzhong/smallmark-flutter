@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
 //          TextFieldDemo()
-        FormDemo()
+          FormDemo()
         ],
       ),
     );
@@ -51,13 +51,13 @@ class _FormDemoState extends State<FormDemo> {
       child: Column(
         children: <Widget>[
           TextFormField(
-            decoration: InputDecoration(hintText: '输入账号'),
-            onSaved: (value) {
-              _name = value;
-            },
-            validator: (String value) {
-              return value.length >= 3 ? null : '账号最少3个字符';
-            },
+              decoration: InputDecoration(hintText: '输入账号'),
+              onSaved: (value) {
+                _name = value;
+              },
+              validator: (String value) {
+                return value.length >= 3 ? null : '账号最少3个字符';
+              },
               autovalidate:true//设置是否自动验证
           ),
           TextFormField(
@@ -112,9 +112,9 @@ class _TextFieldDemoState extends State<TextFieldDemo> {
     textEditingController.text="这是给的默认文本";
 
 //    监听文本改变
-  textEditingController.addListener(() {
-    print('监听到的文本内容是:${textEditingController.text}');
-  });
+    textEditingController.addListener(() {
+      print('监听到的文本内容是:${textEditingController.text}');
+    });
   }
 
   @override
@@ -122,11 +122,11 @@ class _TextFieldDemoState extends State<TextFieldDemo> {
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-        icon: Icon(Icons.people),
-        labelText: "username",
-        hintText: "请输入用户名",
-        border:InputBorder.none,
-        filled: true
+          icon: Icon(Icons.people),
+          labelText: "username",
+          hintText: "请输入用户名",
+          border:InputBorder.none,
+          filled: true
       ),
       onChanged: (value){
         print('onChanged调用了:$value');

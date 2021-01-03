@@ -17,15 +17,40 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:AppBar(
-          title:Text('字体图标和图片练习') ,
-        ),
+      appBar:AppBar(
+        title:Text('字体图标和图片练习') ,
+      ),
 
-        body: ImageExtensionDemo()//图片组件
+//        body: ImageExtensionDemo()//图片组件
 //      body: IconExtensionDemo(),//字体图标组件
+      body:RichWord(),
     );
   }
 }
+
+//文本分片
+class RichWord extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text.rich(
+      TextSpan(
+          children: [
+            TextSpan(
+                text:'定风波',
+                style:TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)
+            ),
+            TextSpan(text: "苏轼", style: TextStyle(fontSize: 18, color: Colors.redAccent)),
+            TextSpan(text: "\n莫听穿林打叶声，何妨吟啸且徐行。\n竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。")
+
+          ]
+      ),
+      style: TextStyle(fontSize: 20,color: Colors.purple),
+      textAlign:TextAlign.center,
+    );
+  }
+}
+
+
 class IconExtensionDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
