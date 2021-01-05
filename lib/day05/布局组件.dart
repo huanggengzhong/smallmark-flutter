@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
 
 //      body:AlignDemo()
 //        body:CenterDemo()
-    body: ContainerDemo(),
+      body: ContainerDemo(),
     );
   }
 }
@@ -32,12 +32,12 @@ class AlignDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-        height: 200,
-        color: Colors.red,
-        child: Align(
-          alignment: Alignment(0.5,0.5),
-          child: Icon(Icons.pets,size: 50,),
-        ),
+      height: 200,
+      color: Colors.red,
+      child: Align(
+        alignment: Alignment(0.5,0.5),
+        child: Icon(Icons.pets,size: 50,),
+      ),
     );
   }
 }
@@ -49,7 +49,7 @@ class CenterDemo extends StatelessWidget {
     return Center(
       child:Icon(Icons.pets,size: 36,color: Colors.red,),
       widthFactor: 8,
-        heightFactor: 12,
+      heightFactor: 12,
     );
   }
 }
@@ -62,12 +62,28 @@ class ContainerDemo extends StatelessWidget {
       child: Container(
         width: 150,
         height: 150,
+        child: Icon(Icons.pets,size: 32,color: Colors.white,),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue,width: 2),
-          image: DecorationImage(
-            image: NetworkImage("https://tva1.sinaimg.cn/large/006y8mN6gy1g7aa03bmfpj3069069mx8.jpg")
-          ),shape: BoxShape.circle
-
+            color: Colors.amber,
+            border: Border.all(
+                color: Colors.redAccent,
+                width: 3,
+                style: BorderStyle.solid
+            ),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(5,5),
+                  color: Colors.purple,
+                  blurRadius: 5
+              )
+            ],
+            gradient: LinearGradient(
+                colors: [
+                  Colors.green,
+                  Colors.red
+                ]
+            )
         )
         ,
       ),
