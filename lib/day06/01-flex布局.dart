@@ -47,7 +47,7 @@ class _HYHomeContentState extends State<HYHomeContent> {
       children: <Widget>[
         Container(
           width: 80,
-            height: 80,
+          height: 80,
           color: Colors.red,
         ),
         Container(
