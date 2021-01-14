@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
 
 //      body:AlignDemo()
 //        body:CenterDemo()
-      body: HYHomeContentColumn(),
+      body: StackDemo(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => print("点击了244333"),
@@ -83,7 +83,7 @@ class HYHomeContentColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       textDirection: TextDirection.ltr,
       verticalDirection: VerticalDirection.down,
@@ -130,3 +130,97 @@ class HYHomeContentColumn extends StatelessWidget {
   }
 }
 
+class HYHomeContentExpanded extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        textBaseline: TextBaseline.alphabetic,
+        children: <Widget>[
+//          Flexible 组件可以控制 Row、Column、Flex 的子控件占满父组件，比如，Row 中有3个子组件，两边的宽是100，中间的占满剩余的空间，代码如下：
+//          Flexible(
+//            fit: FlexFit.tight,
+//            flex: 1,
+//            child: Container(
+//              width: 80,
+//              height: 60,
+//              color: Colors.red,
+//            ),
+//          ),
+//          Flexible(
+//            fit: FlexFit.tight,
+//            flex: 2,
+//            child: Container(
+//              width: 120,
+//              height: 60,
+//              color: Colors.green,
+//            ),
+//          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              width: 80,
+              height: 60,
+              color: Colors.red,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              width: 120,
+              height: 60,
+              color: Colors.green,
+            ),
+          ),
+
+          Container(
+            width: 90,
+            height: 80,
+            color: Colors.blue,
+          ),
+          Container(
+            width: 50,
+            height: 120,
+            color: Colors.orange,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StackDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Image.network(
+            "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imm9u5zj30u00k0adf.jpg"),
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8), //只有某个地方有padding
+              color: Color.fromARGB(150, 0, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    '好好看',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                  IconButton(icon: Icon(Icons.favorite,color: Colors.white,), onPressed: ()=>{
+                    print("点击了图标"),
+                  })
+                ],
+              ),
+            ))
+      ],
+    );
+  }
+}
