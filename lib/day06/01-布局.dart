@@ -193,7 +193,14 @@ class HYHomeContentExpanded extends StatelessWidget {
   }
 }
 
-class StackDemo extends StatelessWidget {
+class StackDemo extends StatefulWidget {
+  bool _isFavor=true;
+  @override
+  _StackDemoState createState() => _StackDemoState();
+}
+
+class _StackDemoState extends State<StackDemo> {
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -214,7 +221,7 @@ class StackDemo extends StatelessWidget {
                     '好好看',
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
-                  IconButton(icon: Icon(Icons.favorite,color: Colors.white,), onPressed: ()=>{
+                  IconButton(icon: Icon(Icons.favorite,color:Colors.red,), onPressed: ()=>{
                     print("点击了图标"),
                   })
                 ],
@@ -224,3 +231,6 @@ class StackDemo extends StatelessWidget {
     );
   }
 }
+
+
+
