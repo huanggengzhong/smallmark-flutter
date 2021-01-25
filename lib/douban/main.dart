@@ -7,118 +7,82 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: '豆瓣',
-        theme: ThemeData(
-            primaryColor: Colors.green,
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent),
+    return MaterialApp(title: '豆瓣',
         home: HomePage());
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("豆瓣App"),
+        title: Text("评分组件"),
       ),
-      body: HYStarRating()
-        );
-  }
-}
-
-class HYStarRating extends StatefulWidget {
-  final double rating;
-  final double maxRating;
-  final Widget unselectedImage;
-  final Widget selectedImage;
-  final int count;
-  final double size;
-  final Color unselectedColor;
-  final Color selectedColor;
-
-  HYStarRating({
-  @required this.rating,
-  this.maxRating = 10,
-  this.size = 30,
-  this.unselectedColor = const Color(0xffbbbbbb),
-  this.selectedColor = const Color(0xffe0aa46),
-  Widget unselectedImage,
-      Widget selectedImage,
-  this.count = 5,
-}): unselectedImage = unselectedImage ?? Icon(Icons.star, size: size, color: unselectedColor,),
-selectedImage = selectedImage ?? Icon(Icons.star, size: size, color: selectedColor);
-
-@override
-_HYStarRatingState createState() => _HYStarRatingState();
-}
-
-class _HYStarRatingState extends State<HYStarRating> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          Row(children: getUnSelectImage(), mainAxisSize: MainAxisSize.min),
-          Row(children: getSelectImage(), mainAxisSize: MainAxisSize.min),
-        ],
+      body: Center(
+        child: StarRating(count: 10,),//测试参数传递
       ),
     );
   }
-
-  // 获取评星
-  List<Widget> getUnSelectImage() {
-    return List.generate(widget.count, (index) => widget.unselectedImage);
-  }
-
-  List<Widget> getSelectImage() {
-    // 1.计算Star个数和剩余比例等
-    double oneValue = widget.maxRating / widget.count;
-    int entireCount = (widget.rating / oneValue).floor();
-    double leftValue = widget.rating - entireCount * oneValue;
-    double leftRatio = leftValue / oneValue;
-
-    // 2.获取start
-    List<Widget> selectedImages = [];
-    for (int i = 0; i < entireCount; i++) {
-      selectedImages.add(widget.selectedImage);
-    }
-
-    // 3.计算
-    Widget leftStar = ClipRect(
-      clipper: MyRectClipper(width: leftRatio * widget.size),
-      child: widget.selectedImage,
-    );
-    selectedImages.add(leftStar);
-
-    return selectedImages;
-  }
 }
 
+class StarRating extends StatefulWidget {
+  final double rating; //多少分
+  final double maxRating; //满分是多少分
+  final int count; //数量
+  final double size; //大小
+  final Color unSelectedColor; //未选中颜色
+  final Color selectedColor; //选中颜色
 
-class MyRectClipper extends CustomClipper<Rect>{
-  final double width;
-
-  MyRectClipper({
-    this.width
+  StarRating({
+    @required this.rating, //必选参数
+    this.maxRating = 10, //这里开始是可选参数,并给默认值
+    this.count = 5,
+    this.size = 30,
+    this.unSelectedColor = const Color(0xffbbbbbb), //默认rgb颜色,要用常量声明
+    this.selectedColor = Colors.red
   });
 
   @override
-  Rect getClip(Size size) {
-    return Rect.fromLTRB(0, 0, width, size.height);
-  }
+  _StarRatingState createState() => _StarRatingState();
+}
 
+class _StarRatingState extends State<StarRating> {
   @override
-  bool shouldReclip(MyRectClipper oldClipper) {
-    return width != oldClipper.width;
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+    Row(
+    mainAxisSize: MainAxisSize.min,
+      children: List.generate(widget.count, (index) {
+        return Icon(
+          Icons.star_border,
+          color: widget.unSelectedColor,
+          size: widget.size,
+        );
+      })
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(
+            Icons.star,
+            color: widget.selectedColor,
+            size: widget.size,
+          ),
+          Icon(
+            Icons.star,
+            color: widget.selectedColor,
+            size: widget.size,
+          ),
+          Icon(
+            Icons.star,
+            color: widget.selectedColor,
+            size: widget.size,
+          ),
+        ],
+      ),
+      ],
+    );
   }
 }
