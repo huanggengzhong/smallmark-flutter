@@ -1,7 +1,38 @@
-import 'service/http_request.dart';
+import 'package:flutter/material.dart';
 
-void main(List<String> arguments) async {
-  HttpRequest.request('/get', params: {"name": 'why'}).then((res) {
-    print('封装请求打印结果:$res');
-  });
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: '豆瓣',
+        theme: ThemeData(
+            primaryColor: Colors.green,
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent),
+        home: HomePage());
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+
+BottomNavigationBar creatItem() {
+  return BottomNavigationBar(
+      //
+      );
 }
