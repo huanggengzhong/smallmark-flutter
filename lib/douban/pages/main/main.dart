@@ -6,16 +6,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _currentIndex=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:IndexedStack(//下标层叠组件
-        index: 4,
+        index: _currentIndex,
         children: pages,
       ) ,
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,//超过四个不设置文字会隐藏
-        items:items
+        items:items,
+        onTap: (index){
+          setState(() {
+            _currentIndex=index;
+          });
+        },
       ),
     );
   }
