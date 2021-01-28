@@ -15,6 +15,7 @@ class _MainPageState extends State<MainPage> {
         children: pages,
       ) ,
       bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 14,
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,//超过四个不设置文字会隐藏
         items:items,
