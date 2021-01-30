@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp3/service/http_request.dart';
+import './../../../service/http_request.dart';
 
 //import ' service/http_request.dart';
 class HomeContent extends StatefulWidget {
@@ -13,7 +13,7 @@ class _HomeContentState extends State<HomeContent> {
     // TODO: implement initState
     super.initState();
     //这里发送网络请求
-    HttpRequest.request('/get', params: {"name": 'why'}).then((res) {
+    HttpRequest.request('/api/v2/movie/top250', params: {"name": 'why'}).then((res) {
       print('get请求打印结果:$res');
     });
   }
