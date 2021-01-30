@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './../../../service/http_request.dart';
-
+import './MovieListItem.dart';
 //import ' service/http_request.dart';
 class HomeContent extends StatefulWidget {
   @override
@@ -8,13 +8,21 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
+  List movies=[];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     //这里发送网络请求
+    getMovieList();
+  }
+//  获取数据的方法
+  void getMovieList(){
     HttpRequest.request('/api/v2/movie/top250', params: {"name": 'why'}).then((res) {
-      print('get请求打印结果:$res');
+      setState(() {
+        movies.addAll(res['data']);//addAll是添加整个数组的方法
+//        print('movies:$movies');
+      });
     });
   }
 
@@ -22,11 +30,9 @@ class _HomeContentState extends State<HomeContent> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        itemCount: 30,
-        itemBuilder: (ctx, index) {
-          return ListTile(
-            title: Text('item$index'),
-          );
+        itemCount: movies.length,
+        itemBuilder: (BuildContext ctx, int index) {
+          return MovieListItem(movies[index],index);
         },
       ),
     );
