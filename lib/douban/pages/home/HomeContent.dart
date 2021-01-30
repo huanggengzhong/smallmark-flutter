@@ -21,7 +21,7 @@ class _HomeContentState extends State<HomeContent> {
     HttpRequest.request('/api/v2/movie/top250', params: {"name": 'why'}).then((res) {
       setState(() {
         movies.addAll(res['data']);//addAll是添加整个数组的方法
-//        print('movies:$movies');
+        print('movies:$movies');
       });
     });
   }
