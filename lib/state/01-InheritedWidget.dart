@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
 //      2.在最顶级里用HYCounterWidget组件包裹
       body:HYCounterWidget(
 //        下面这里的counter就是共享的数据
-      counter:_counter,
+        counter:_counter,
         child: Column(
           children: <Widget>[
             HYShowData01(),
@@ -67,10 +67,10 @@ class HYCounterWidget extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType();
   }
 
- bool updateShouldNotify(HYCounterWidget oldWidget){
+  bool updateShouldNotify(HYCounterWidget oldWidget){
 //    这里如果返回false,那么生命周期didChangeDependencies不会执行
- print(oldWidget.counter);
-  return oldWidget.counter!=counter;
+    print(oldWidget.counter);
+    return oldWidget.counter!=counter;
   }
 }
 
@@ -79,7 +79,7 @@ class HYShowData01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 //    3.获取之前的数据
-  int counter=HYCounterWidget.of(context).counter;
+    int counter=HYCounterWidget.of(context).counter;
     return Container(
       color:Colors.red,
       child: Text('子组件1获取的数据:$counter'),
