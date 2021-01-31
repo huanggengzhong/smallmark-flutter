@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './../../../service/http_request.dart';
 import './MovieListItem.dart';
+import './../../utils/log.dart';
 //import ' service/http_request.dart';
 class HomeContent extends StatefulWidget {
   @override
@@ -21,7 +22,8 @@ class _HomeContentState extends State<HomeContent> {
     HttpRequest.request('/api/v2/movie/top250', params: {"name": 'why'}).then((res) {
       setState(() {
         movies.addAll(res['data']);//addAll是添加整个数组的方法
-        print('movies:$movies');
+        myLog('movies:$movies',StackTrace.current);//StackTrace是一个跟踪类
+//        print('movies:$movies');
       });
     });
   }

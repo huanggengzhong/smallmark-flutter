@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './../../../widget/dash_line.dart';
 import './../../../widget/star_rating.dart';
+
 Widget getMovieContentWidget(Map movie){
   return Container(
     height:150,
