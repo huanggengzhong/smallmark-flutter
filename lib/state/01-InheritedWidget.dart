@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 //数据共享状态组件
-//1.先定义一个共享组件HYDataWidget
+//1.先定义一个共享组件HYDataWidget,里面一般都是这四步:共享的数据=>定义构造方法=>获取组件最近的当前InheritedWidget=>要不要回调state里的didChangeDependencies生命周期方法
 class HYCounterWidget extends InheritedWidget {
 //  这里是共享数据,比如下面的count
   final int counter;
