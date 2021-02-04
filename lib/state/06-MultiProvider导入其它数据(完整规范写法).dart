@@ -9,7 +9,7 @@ void main() {
   return runApp(
 //    使用MultiProvider共享多个model使用方式
       MultiProvider(
-        providers: providers,
+          providers: providers,
           child: MyApp()
       )
   );
