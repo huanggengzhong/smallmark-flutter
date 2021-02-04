@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 void main() {
   return runApp(
 //2.在自己的组件树中插入自己写好的Model组件
-    ChangeNotifierProvider(
-      create: (ctx)=>HYCounterViewModel(),
-      child:MyApp()
-    )
+      ChangeNotifierProvider(
+          create: (ctx)=>HYCounterViewModel(),
+          child:MyApp()
+      )
   );
 }
 
@@ -45,18 +45,13 @@ class _HomePageState extends State<HomePage> {
           HYShowData02(),
         ],
       ),
-//      4.改变数据的方式
-      floatingActionButton: Consumer<HYCounterViewModel>(//需要传递自己写的泛型
-        builder:(ctx,counterVM,child){
-          return FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: (){
-              setState(() {
-                counterVM.counter++;
-              });
-            },
-          );
-        } ,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          setState(() {
+            _counter++;
+          });
+        },
       ),
     );
   }
@@ -67,7 +62,7 @@ class HYShowData01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 //  3.使用model里的数据
-  int counter=Provider.of<HYCounterViewModel>(context).counter;//这里要传递自己定义组件的泛型类型
+    int counter=Provider.of<HYCounterViewModel>(context).counter;//这里要传递自己定义组件的泛型类型
     return Container(
       color:Colors.red,
       child: Text('子组件1获取的数据:$counter'),
