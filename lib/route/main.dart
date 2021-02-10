@@ -10,12 +10,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    initialRoute: "/",
-//      使用路由映射表
-        routes: {
-          "/": (ctx) => HomePage(),
-          "/about": (ctx) => AboutPage()},
+      initialRoute: HomePage.routeName,
 
+//      使用路由映射表
+      routes: {
+        HomePage.routeName: (ctx) => HomePage(),
+        AboutPage.routeName: (ctx) => AboutPage(),
+//      "/detail":(ctx)=>DetailScreen()//如果用命名路由时这里是添加不了参数的
+      },
+//      这里解决命名路由参数问题
+      onGenerateRoute: (settings) {
+        if (settings.name == "/detail") {
+          return MaterialPageRoute(builder: (ctx) {
+            return DetailScreen(settings.arguments);
+          });
+        }
+        return null;
+      },
     );
 
 //        home: HomePage());
@@ -23,6 +34,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  static const String routeName = "/";
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -37,7 +50,17 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[ButtonWidget(), ButtonDetail()],
+          children: <Widget>[
+            ButtonWidget(),
+            ButtonDetail(),
+            RaisedButton(
+              child: Text("命名方式打开详情页"),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed('/detail', arguments: "这是首页传递的参数");
+              },
+            )
+          ],
         )));
   }
 }
@@ -67,7 +90,7 @@ class ButtonWidget extends StatelessWidget {
 //关于页面,使用命名路由方式跳转
 class ButtonDetail extends StatelessWidget {
   void _jumpToAbout(BuildContext context) {
-    Navigator.of(context).pushNamed("/about");
+    Navigator.of(context).pushNamed("/about", arguments: "首页的数据");
   }
 
   @override
@@ -75,6 +98,21 @@ class ButtonDetail extends StatelessWidget {
     return RaisedButton(
       child: Text("跳转关于页"),
       onPressed: () => _jumpToAbout(context),
+    );
+  }
+}
+
+//使用命名路由方式跳转详情并携带参数
+class ButtonDetail2 extends StatelessWidget {
+  void _jumpToDetail(BuildContext context) {
+    Navigator.of(context).pushNamed("/detail", arguments: "首页的数据");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      child: Text("跳转详情页"),
+      onPressed: () => _jumpToDetail(context),
     );
   }
 }
