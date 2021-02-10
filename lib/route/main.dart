@@ -1,3 +1,4 @@
+import 'unkownPage.dart';
 import 'about.dart';
 import 'package:flutter/material.dart';
 import 'detail.dart';
@@ -27,6 +28,13 @@ class MyApp extends StatelessWidget {
         }
         return null;
       },
+      onUnknownRoute: (settings){
+        return MaterialPageRoute(
+          builder: (ctx){
+            return UnkownPage();
+          }
+        );
+      },
     );
 
 //        home: HomePage());
@@ -54,12 +62,19 @@ class _HomePageState extends State<HomePage> {
             ButtonWidget(),
             ButtonDetail(),
             RaisedButton(
-              child: Text("命名方式打开详情页"),
+              child: Text("命名方式打开详情页(带参数)"),
               onPressed: () {
                 Navigator.of(context)
                     .pushNamed('/detail', arguments: "这是首页传递的参数");
               },
-            )
+            ),
+            RaisedButton(
+              child: Text("测试错误页面"),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed('/adfsadf');
+              },
+            ),
           ],
         )));
   }
