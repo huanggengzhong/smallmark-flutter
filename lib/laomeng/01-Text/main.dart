@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Flutter Demo",
       theme: ThemeData(
-        primarySwatch: Colors.blue,splashColor:Colors.transparent,
+        primarySwatch: Colors.blue,
+        splashColor: Colors.transparent,
       ),
       home: HomePage(),
     );
@@ -24,11 +25,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("首页"),
       ),
-      body: Center(
-
-        child: Text("字由字体工具",style: TextStyle(fontFamily:'ksw',color: Colors.black,fontSize: 30),),
+      body: Container(
+        child: Text(
+          "字由字体工具",
+          style:
+              TextStyle(fontFamily: 'ksw', color: Colors.black, fontSize: 30),
+        ),
       ),
     );
   }
 }
-

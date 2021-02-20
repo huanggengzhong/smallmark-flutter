@@ -72,7 +72,7 @@ flutter:
   fonts:
      - family: ksw
        fonts:
-         - asset: assets/fonts/
+         - asset: assets/fonts/ksw.ttf
            style: italic
   # example:
   # fonts:
