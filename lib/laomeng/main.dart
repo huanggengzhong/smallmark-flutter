@@ -24,18 +24,11 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
 //        发现TextRich没有用,用下面语法有用
-        child: Text.rich(TextSpan(
-            children: [
-              TextSpan(
-                  text: "Home: ",
-                  style: TextStyle(color: Colors.red)
-              ),
-              TextSpan(
-                  text: "https://flutterchina.club",
-
-              ),
-            ]
-        )),
+        child: TextField(
+          decoration: InputDecoration(
+            icon:Icon(Icons.person)
+          ),
+        ),
       ),
     );
   }
