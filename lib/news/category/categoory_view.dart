@@ -8,20 +8,6 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPage extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            child: Image.network("",width: 130,height: 110,),
-            color: Colors.grey,
-          ),
-          Column(
-            children: [
-
-            ],
-          )
-        ],
-      ),
-    );
+    return Container();
   }
 }

@@ -16,7 +16,32 @@ class _HomePageState extends State<HomePage> {
         return SwiperWidget();
       }else{
         return Container(
-          child: Text("haha"),
+          child: Row(
+            children: [
+              Container(
+                child: Image.network("",width: 130,height: 110,),
+                color: Colors.grey,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text("新闻标题",maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                    margin: EdgeInsets.only(left:10,top: 10,right: 10),
+                    width: MediaQuery.of(context).size.width-130-20,
+                  ),
+                  Container(
+                    child:  Text("新闻来源"),
+                    margin: EdgeInsets.only(left: 10,top: 5),
+                  ),
+                  Container(
+                    child:  Text("发布时间"),
+                    margin: EdgeInsets.only(left: 10,top: 5),
+                  ),
+                ],
+              )
+            ],
+          ),
         );
       }
     },itemCount: 10,);
