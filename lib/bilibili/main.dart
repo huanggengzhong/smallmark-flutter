@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widget/login_input.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,18 +9,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: '哔哩哔哩', home: HomePage());
+    return MaterialApp(title: '哔哩哔哩', home: LoginInput());
   }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      child: buildText,
-    ));
-  }
-
-  Text get buildText => Text("bilibili");
 }
