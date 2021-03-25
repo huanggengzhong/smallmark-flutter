@@ -8,8 +8,8 @@ class LoginInput extends StatefulWidget {
 class _LoginInputState extends State<LoginInput> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("login"),
+    return Scaffold(
+      body: Text("bili"),
     );
   }
 }
